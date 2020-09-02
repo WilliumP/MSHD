@@ -2,8 +2,13 @@ package com.miaosha.demo;
 
 import static org.junit.Assert.*;
 
+import com.miaosha.demo.dao.DisasterDao;
+import com.miaosha.demo.dao.DisasterRequestDao;
+import com.miaosha.demo.dao.UserDao;
 import com.miaosha.demo.domain.Disaster;
 import com.miaosha.demo.service.DisasterService;
+import com.miaosha.demo.service.ShuiliService;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +28,7 @@ public class selectByTypeTest {
 
         //创建一个 List用来存放正确的待检查数据
         List<Disaster> data = new ArrayList<>();
-        Disaster a1 = new Disaster("123456400000012001","2020-02-01 00:00:00","1",
+        Disaster a1 = new Disaster(null,"123456400000012001","2020-02-01 00:00:00","1",
                 "1","1",null,"1","5");
         data.add(a1);
 
@@ -34,5 +39,15 @@ public class selectByTypeTest {
 //        }
 
     }
+    
+    DisasterDao dd;
+    DisasterRequestDao dr;
+    UserDao d;
+    @Test
+    public void t() {
+    	ShuiliService.beifen();
+    }
+    
+    
 
 }
