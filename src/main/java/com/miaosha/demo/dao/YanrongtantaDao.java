@@ -8,26 +8,26 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.miaosha.demo.domain.CivilStructure;
+
 import com.miaosha.demo.domain.Yanrongtanta;
 
 public interface YanrongtantaDao {
     @Insert("INSERT INTO yanrongtanta(`id`, `location`, `date`, `type`, `status`, `note`, `picture`, `reporting_unit`) VALUES " +
             "(#{cr.id},#{cr.location},#{cr.date}," +
             "#{cr.type},#{cr.status},#{cr.note},#{cr.picture},#{cr.reporting_unit})")
-    public void Insert(@Param("cr") Yanrongtanta cr);
+    void Insert(@Param("cr") Yanrongtanta cr);
 
     @Select("select * from yanrongtanta ORDER BY `key` ASC")
-    public List<Yanrongtanta> selectAll();
+    List<Yanrongtanta> selectAll();
 
     @Select("select * from yanrongtanta where type = #{type}")
-    public List<Yanrongtanta> selectByType(@Param("type") String type);
+    List<Yanrongtanta> selectByType(@Param("type") String type);
 
     @Select("select * from yanrongtanta where reporting_unit = #{reporting_unit}")
-    public List<Yanrongtanta> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<Yanrongtanta> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from yanrongtanta where `key` = #{key}")
-    public List<Yanrongtanta> selectByKey(@Param("key") String key);
+    List<Yanrongtanta> selectByKey(@Param("key") String key);
     
     @Insert({
      "<script>",
@@ -37,7 +37,7 @@ public interface YanrongtantaDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<Yanrongtanta> list);
+    boolean insertForeach(@Param(value = "list") List<Yanrongtanta> list);
     
     @Insert({
         "<script>",
@@ -47,14 +47,14 @@ public interface YanrongtantaDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<Yanrongtanta> list);
+    boolean beifen(@Param(value = "list") List<Yanrongtanta> list);
     
     @Delete("delete from yanrongtanta where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from yanrongtanta")
-    public void deleteAll(); 
+    void deleteAll();
     
     @Update("update yanrongtanta SET id = #{cr.id},location=#{cr.location},date=#{cr.date},type=#{cr.type},status=#{cr.status},note=#{cr.note},picture=#{cr.picture},reporting_unit=#{cr.reporting_unit} where `key` = #{cr.key} ")
-    public void updateByKey(@Param("cr") Yanrongtanta cr);
+    void updateByKey(@Param("cr") Yanrongtanta cr);
 }
