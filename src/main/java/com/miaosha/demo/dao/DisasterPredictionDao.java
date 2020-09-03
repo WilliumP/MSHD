@@ -1,33 +1,26 @@
 package com.miaosha.demo.dao;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-
-import com.miaosha.demo.domain.Disaster;
 import com.miaosha.demo.domain.DisasterPrediction;
-import com.miaosha.demo.domain.DisasterRequest;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface DisasterPredictionDao {
     @Insert("INSERT INTO disaster_prediction(`id`, `date`, `location`, `longitude`, `latitude`, `depth`, `magnitude`, `intensity`, `type`, `picture`, `note`, `reporting_unit`) VALUES " +
             "(#{item.id}, #{item.date}, #{item.location}, #{item.longitude}, #{item.latitude}, #{item.depth}, #{item.magnitude}, #{item.intensity}, #{item.type}, #{item.picture}, #{item.note},#{item.reporting_unit})")
-    public void Insert(@Param("item") DisasterPrediction item);
+    void Insert(@Param("item") DisasterPrediction item);
 
     @Select("select * from disaster_prediction ORDER BY `key` ASC")
-    public List<DisasterPrediction> selectAll();
+    List<DisasterPrediction> selectAll();
 
     @Select("select * from disaster_prediction where type = #{type}")
-    public List<DisasterPrediction> selectByType(@Param("type") String type);
+    List<DisasterPrediction> selectByType(@Param("type") String type);
 
     @Select("select * from disaster_prediction where reporting_unit = #{reporting_unit}")
-    public List<DisasterPrediction> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<DisasterPrediction> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from disaster_prediction where `key` = #{key}")
-    public List<DisasterPrediction> selectByKey(@Param("key") String key);
+    List<DisasterPrediction> selectByKey(@Param("key") String key);
     
     @Insert({
      "<script>",
@@ -37,7 +30,7 @@ public interface DisasterPredictionDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<DisasterPrediction> list);
+    boolean insertForeach(@Param(value = "list") List<DisasterPrediction> list);
     
     @Insert({
         "<script>",
@@ -47,15 +40,15 @@ public interface DisasterPredictionDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<DisasterPrediction> list);
+    boolean beifen(@Param(value = "list") List<DisasterPrediction> list);
     
     @Delete("delete from disaster_prediction where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from disaster_prediction")
-    public void deleteAll();   
+    void deleteAll();
     
     @Update("update disaster_prediction SET id=#{item.id}, date=#{item.date}, location=#{item.location}, longitude=#{item.longitude}, latitude=#{item.latitude}, depth=#{item.depth}, "
     		+ "magnitude=#{item.magnitude}, intensity=#{item.intensity}, type=#{item.type}, picture=#{item.picture}, note=#{item.note}, reporting_unit=#{item.reporting_unit} where `key` = #{item.key} ")
-    public void updateByKey(@Param("item") DisasterPrediction item);
+    void updateByKey(@Param("item") DisasterPrediction item);
 }
