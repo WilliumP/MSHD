@@ -1,71 +1,44 @@
 package com.miaosha.demo.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.miaosha.demo.domain.*;
-import com.miaosha.demo.json.OperateJsonFile;
 import com.miaosha.demo.service.DisasterRequestService;
-import com.miaosha.demo.service.DisasterService;
-import com.miaosha.demo.service.ShuiliService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class ClientController {
 
-    @Autowired
-    DisasterService disasterService;
-    
-    OperateJsonFile op;
+	//导出数据
+	@RequestMapping("/dataexport")
+	public String exportData() {
+		return "Client_Export";
+	}
 
-    /*
-    主页导航按钮
-     */
-    
-    //导出数据
-    @RequestMapping("/dataexport")
-    public String exportData(){
-        return "Client_Export";
-    }
-    
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
-    public String someoneWantDownload(@RequestParam("disasterOptions") String disasterOptions, @RequestParam("url") String url,
-    		@RequestParam("request_unit") String re) {
-    	DisasterRequest dr = new DisasterRequest();
-    	Date date = new Date();
-    	dr.setDisaster_type(disasterOptions);
-    	dr.setO_url(url);
-    	dr.setStatus("0");
-    	dr.setRequest_unit(re);
-    	dr.setId("1111111111111111111");
+	@RequestMapping(value = "/download", method = RequestMethod.POST)
+	public String someoneWantDownload(@RequestParam("disasterOptions") String disasterOptions, @RequestParam("url") String url,
+									  @RequestParam("request_unit") String re) {
+		DisasterRequest dr = new DisasterRequest();
+		Date date = new Date();
+		dr.setDisaster_type(disasterOptions);
+		dr.setO_url(url);
+		dr.setStatus("0");
+		dr.setRequest_unit(re);
+		dr.setId("1111111111111111111");
 
 		String strDateFormat = "yyyy-MM-dd HH:mm:ss";
 		SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
-    	dr.setDate(sdf.format(date));
-    	System.out.println(dr.toString());
-    	DisasterRequestService.insertOne(dr);
-    	return "Client_Export";
-    }
-
+		dr.setDate(sdf.format(date));
+		System.out.println(dr.toString());
+		DisasterRequestService.insertOne(dr);
+		return "Client_Export";
+	}
+}
     /*
     //下载文件
     @RequestMapping("/download")
@@ -145,4 +118,4 @@ public class ClientController {
         //return response;
     }
 */
-}
+

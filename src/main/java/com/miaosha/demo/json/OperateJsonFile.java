@@ -54,6 +54,7 @@ public class OperateJsonFile {
         if(list == null){
             return list;
         }
+
         for(int i=0;i<list.size();i++) {
         	  String id = list.get(i).getId().substring(0,12);
         	  HashMap<String,String[]> mapInfo=initMap();

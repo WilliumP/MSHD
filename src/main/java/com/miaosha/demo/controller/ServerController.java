@@ -29,18 +29,7 @@ public class ServerController {
 
     @Autowired
     private HttpServletResponse myHttpResponse;
-    
-    @Autowired
-    UserService usrService;
-    
-    //有五个Service
-    @Autowired
-    DisasterService disasterService;
-        
-    OperateJsonFile op;
-    
-    
-    
+
     @RequestMapping(value = "/submit",method = RequestMethod.POST)
     @ResponseBody
     public String isLogin(@RequestParam("username") String username,
@@ -64,11 +53,6 @@ public class ServerController {
     public String adminHome(){
         return "Server_index";
     }
-
-    
-    /*
-    主页导航按钮
-     */
 
     //注销
     @RequestMapping("/adminLogout")
@@ -155,14 +139,12 @@ public class ServerController {
     @RequestMapping(value = "/Quests", method = RequestMethod.PUT)
     @ResponseBody
     //ResponseEntity<byte[]>
-    public String sendsolve(@RequestParam("key") String key) throws IOException {
+    public String sendsolve(@RequestParam("key") String key) {
     	List<DisasterRequest> dr = DisasterRequestService.selectByKey(key);
     	String disasterOptions = dr.get(0).getDisaster_type();
     	String url = dr.get(0).getO_url();
     	
         OperateJsonFile op = new OperateJsonFile();
-        byte [] body = null;
-        String str = "";
         switch (disasterOptions){
             case ("111"):
                 List<DeathStatistics> deathStatistics = DeathStatisticsService.selectAll();
@@ -272,7 +254,7 @@ public class ServerController {
                 }
                 break;
             case ("336"):
-                List<Disaster> disasters  = disasterService.selectAll();
+                List<Disaster> disasters  = DisasterService.selectAll();
                 try {
                     op.export_disaster(disasters, url + "/comm_disaster.json");
                 } catch (Exception e) {

@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,7 @@ public class UsrMangerController {
 
     @RequestMapping(value = "/adminUserManage/addUser",method = RequestMethod.POST)
     public String addUser(@RequestParam("userid") String idstr,@RequestParam("username") String name, @RequestParam("userpwd") String pwd){
-    	if(idstr==""||name==""||pwd=="") {
+    	if(idstr.isEmpty() || name.isEmpty() ||pwd.isEmpty()) {
     		return "redirect:/adminUserManage";
     	}
     	int id= Integer.parseInt(idstr);
@@ -32,8 +31,8 @@ public class UsrMangerController {
   
     @RequestMapping(value = "/adminUserManage/search",method = RequestMethod.GET)
     public String searchUser(@RequestParam("searchUser") String idstr,Model model){
-    List<User>  usrList=null;
-    	if(idstr=="") {
+    List<User> usrList;
+    	if(idstr.isEmpty()) {
     		usrList=UserService.selectAll();
     		model.addAttribute("User", usrList);
     		return "redirect:/adminUserManage";
@@ -49,7 +48,7 @@ public class UsrMangerController {
     @ResponseBody
     public String usrModify(@RequestParam("userid") String idstr,@RequestParam("username") String name, @RequestParam("userpwd") String pwd){
 //    	System.out.println(idstr);
-    	if(idstr==""||name==""||pwd=="") {
+    	if(idstr.isEmpty() || name.isEmpty() ||pwd.isEmpty()) {
     		return "success";
     	}
     	int id= Integer.parseInt(idstr);
@@ -60,7 +59,7 @@ public class UsrMangerController {
     
     @RequestMapping(value = "/adminUserManage/delete")
     @ResponseBody
-    public String usrDelete(Model model, HttpServletRequest request){
+    public String usrDelete(HttpServletRequest request){
     	String idstr= request.getParameter("userID");
     	int id= Integer.parseInt(idstr);
  //   	System.out.println(id);
