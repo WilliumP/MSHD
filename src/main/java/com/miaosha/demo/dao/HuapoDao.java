@@ -14,19 +14,19 @@ public interface HuapoDao {
     @Insert("INSERT INTO huapo(`id`, `location`, `date`, `type`, `status`, `note`, `picture`, `reporting_unit`) VALUES " +
             "(#{cr.id},#{cr.location},#{cr.date}," +
             "#{cr.type},#{cr.status},#{cr.note},#{cr.picture},#{cr.reporting_unit})")
-    public void Insert(@Param("cr") Huapo cr);
+    void Insert(@Param("cr") Huapo cr);
 
     @Select("select * from huapo ORDER BY `key` ASC")
-    public List<Huapo> selectAll();
+    List<Huapo> selectAll();
 
     @Select("select * from huapo where type = #{type}")
-    public List<Huapo> selectByType(@Param("type") String type);
+    List<Huapo> selectByType(@Param("type") String type);
 
     @Select("select * from huapo where reporting_unit = #{reporting_unit}")
-    public List<Huapo> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<Huapo> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from huapo where `key` = #{key}")
-    public List<Huapo> selectByKey(@Param("key") String key);
+    List<Huapo> selectByKey(@Param("key") String key);
     
     @Insert({
      "<script>",
@@ -36,7 +36,7 @@ public interface HuapoDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<Huapo> list);
+    boolean insertForeach(@Param(value = "list") List<Huapo> list);
     
     @Insert({
         "<script>",
@@ -46,14 +46,14 @@ public interface HuapoDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<Huapo> list);
+    boolean beifen(@Param(value = "list") List<Huapo> list);
     
     @Delete("delete from huapo where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from huapo")
-    public void deleteAll();   
+    void deleteAll();
     
     @Update("update huapo SET id = #{cr.id},location=#{cr.location},date=#{cr.date},type=#{cr.type},status=#{cr.status},note=#{cr.note},picture=#{cr.picture},reporting_unit=#{cr.reporting_unit} where `key` = #{cr.key} ")
-    public void updateByKey(@Param("cr") Huapo cr);
+    void updateByKey(@Param("cr") Huapo cr);
 }
