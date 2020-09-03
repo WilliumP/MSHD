@@ -15,17 +15,17 @@ public interface ShizongDao {
     @Insert("INSERT INTO shizong(`id`, `location`, `date`, `number`, `reporting_unit`) VALUES " +
             "(#{ds.id},#{ds.location},#{ds.date}," +
             "#{ds.number},#{ds.reporting_unit})")
-    public void Insert(@Param("ds") Shizong ds);
+    void Insert(@Param("ds") Shizong ds);
 
     @Select("select * from shizong ORDER BY `key` ASC")
-    public List<Shizong> selectAll();
+    List<Shizong> selectAll();
 
 
     @Select("select * from shizong where reporting_unit = #{reporting_unit}")
-    public List<Shizong> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<Shizong> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from shizong where `key` = #{key}")
-    public List<Shizong> selectByKey(@Param("key") String key);
+    List<Shizong> selectByKey(@Param("key") String key);
     
     @Insert({
      "<script>",
@@ -35,7 +35,7 @@ public interface ShizongDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<Shizong> list);
+    boolean insertForeach(@Param(value = "list") List<Shizong> list);
     
     @Insert({
         "<script>",
@@ -45,14 +45,14 @@ public interface ShizongDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<Shizong> list);
+    boolean beifen(@Param(value = "list") List<Shizong> list);
     
     @Delete("delete from shizong where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from shizong")
-    public void deleteAll(); 
+    void deleteAll();
     
     @Update("update shizong SET id=#{ds.id},location=#{ds.location},date=#{ds.date},number=#{ds.number},reporting_unit=#{ds.reporting_unit} where `key` = #{ds.key} ")
-    public void updateByKey(@Param("ds") Shizong ds);
+    void updateByKey(@Param("ds") Shizong ds);
 }

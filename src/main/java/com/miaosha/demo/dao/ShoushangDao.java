@@ -15,17 +15,17 @@ public interface ShoushangDao {
     @Insert("INSERT INTO shoushang(`id`, `location`, `date`, `number`, `reporting_unit`) VALUES " +
             "(#{ds.id},#{ds.location},#{ds.date}," +
             "#{ds.number},#{ds.reporting_unit})")
-    public void Insert(@Param("ds") Shoushang ds);
+    void Insert(@Param("ds") Shoushang ds);
 
     @Select("select * from shoushang ORDER BY `key` ASC")
-    public List<Shoushang> selectAll();
+    List<Shoushang> selectAll();
 
 
     @Select("select * from shoushang where reporting_unit = #{reporting_unit}")
-    public List<Shoushang> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<Shoushang> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from shoushang where `key` = #{key}")
-    public List<Shoushang> selectByKey(@Param("key") String key);
+    List<Shoushang> selectByKey(@Param("key") String key);
     
     @Insert({
      "<script>",
@@ -35,7 +35,7 @@ public interface ShoushangDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<Shoushang> list);
+    boolean insertForeach(@Param(value = "list") List<Shoushang> list);
     
     @Insert({
         "<script>",
@@ -45,14 +45,14 @@ public interface ShoushangDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<Shoushang> list);
+    boolean beifen(@Param(value = "list") List<Shoushang> list);
     
     @Delete("delete from shoushang where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from shoushang")
-    public void deleteAll(); 
+    void deleteAll();
     
     @Update("update shoushang SET id=#{ds.id},location=#{ds.location},date=#{ds.date},number=#{ds.number},reporting_unit=#{ds.reporting_unit} where `key` = #{ds.key} ")
-    public void updateByKey(@Param("ds") Shoushang ds);
+    void updateByKey(@Param("ds") Shoushang ds);
 }
