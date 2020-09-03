@@ -14,26 +14,26 @@ public interface FangwuQitaDao {
     @Insert("INSERT INTO fangwuqita(`id`, `date`, `location`, `basically_intact_square`, `damaged_square`, `destroyed_square`,`note`, `reporting_unit`) VALUES " +
             "(#{cs.id},#{cs.date},#{cs.location},#{cs.basically_intact_square},#{cs.damaged_square}," +
             "#{cs.destroyed_square},#{cs.note},#{cs.reporting_unit})")
-    public void Insert(@Param("cs") FangwuQita cs);
+    void Insert(@Param("cs") FangwuQita cs);
 
     @Select("select * from fangwuqita ORDER BY `key` ASC")
-    public List<FangwuQita> selectAll();
+    List<FangwuQita> selectAll();
 
     @Select("select * from fangwuqita where reporting_unit = #{reporting_unit}")
-    public List<FangwuQita> selectByUnit(@Param("reporting_unit") String reporting_unit);
+    List<FangwuQita> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from fangwuqita where `key` = #{key}")
-    public List<FangwuQita> selectByKey(@Param("key") String key);
+    List<FangwuQita> selectByKey(@Param("key") String key);
     
     @Delete("delete from fangwuqita where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+    void deleteByKey(@Param("key") String key);
     
     @Delete("delete from fangwuqita")
-    public void deleteAll();   
+    void deleteAll();
     
     @Update("update fangwuqita SET id = #{cs.id}, date = #{cs.date}, location = #{cs.location}, basically_intact_square = #{cs.basically_intact_square}, damaged_square=#{cs.damaged_square},"
     		+ "destroyed_square = #{cs.destroyed_square},note = #{cs.note},reporting_unit = #{cs.reporting_unit} where `key` = #{cs.key} ")
-    public void updateByKey(@Param("cs") FangwuQita cs);
+    void updateByKey(@Param("cs") FangwuQita cs);
     
     @Insert({
      "<script>",
@@ -43,7 +43,7 @@ public interface FangwuQitaDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<FangwuQita> list);
+    boolean insertForeach(@Param(value = "list") List<FangwuQita> list);
     
     @Insert({
         "<script>",
@@ -53,5 +53,5 @@ public interface FangwuQitaDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<FangwuQita> list);
+    boolean beifen(@Param(value = "list") List<FangwuQita> list);
 }
