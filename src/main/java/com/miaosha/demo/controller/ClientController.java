@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,10 @@ public class ClientController {
     	dr.setStatus("0");
     	dr.setRequest_unit(re);
     	dr.setId("1111111111111111111");
-    	dr.setDate(date.toLocaleString());
+
+		String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+		SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+    	dr.setDate(sdf.format(date));
     	System.out.println(dr.toString());
     	DisasterRequestService.insertOne(dr);
     	return "Client_Export";
