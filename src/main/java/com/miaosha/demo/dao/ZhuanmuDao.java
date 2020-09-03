@@ -14,26 +14,26 @@ public interface ZhuanmuDao {
     @Insert("INSERT INTO zhuanmu(`id`, `date`, `location`, `basically_intact_square`, `damaged_square`, `destroyed_square`,`note`, `reporting_unit`) VALUES " +
             "(#{cs.id},#{cs.date},#{cs.location},#{cs.basically_intact_square},#{cs.damaged_square}," +
             "#{cs.destroyed_square},#{cs.note},#{cs.reporting_unit})")
-    public void Insert(@Param("cs") Zhuanmu cs);
+     void Insert(@Param("cs") Zhuanmu cs);
 
     @Select("select * from zhuanmu ORDER BY `key` ASC")
-    public List<Zhuanmu> selectAll();
+     List<Zhuanmu> selectAll();
 
     @Select("select * from zhuanmu where reporting_unit = #{reporting_unit}")
-    public List<Zhuanmu> selectByUnit(@Param("reporting_unit") String reporting_unit);
+     List<Zhuanmu> selectByUnit(@Param("reporting_unit") String reporting_unit);
     
     @Select("select * from zhuanmu where `key` = #{key}")
-    public List<Zhuanmu> selectByKey(@Param("key") String key);
+     List<Zhuanmu> selectByKey(@Param("key") String key);
     
     @Delete("delete from zhuanmu where `key` = #{key}")
-    public void deleteByKey(@Param("key") String key);
+     void deleteByKey(@Param("key") String key);
     
     @Delete("delete from zhuanmu")
-    public void deleteAll(); 
+     void deleteAll();
     
     @Update("update zhuanmu SET id = #{cs.id}, date = #{cs.date}, location = #{cs.location}, basically_intact_square = #{cs.basically_intact_square}, damaged_square=#{cs.damaged_square},"
     		+ "destroyed_square = #{cs.destroyed_square},note = #{cs.note},reporting_unit = #{cs.reporting_unit} where `key` = #{cs.key} ")
-    public void updateByKey(@Param("cs") Zhuanmu cs);
+     void updateByKey(@Param("cs") Zhuanmu cs);
     
     @Insert({
      "<script>",
@@ -43,7 +43,7 @@ public interface ZhuanmuDao {
      "</foreach>",
      "</script>"
     })
-    public boolean insertForeach(@Param(value = "list") List<Zhuanmu> list);
+    boolean insertForeach(@Param(value = "list") List<Zhuanmu> list);
     
     @Insert({
         "<script>",
@@ -53,5 +53,5 @@ public interface ZhuanmuDao {
         "</foreach>",
         "</script>"
        })
-    public boolean beifen(@Param(value = "list") List<Zhuanmu> list);
+    boolean beifen(@Param(value = "list") List<Zhuanmu> list);
 }
