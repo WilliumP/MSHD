@@ -9,6 +9,7 @@ import com.miaosha.demo.service.DisasterRequestService;
 import com.miaosha.demo.service.DisasterService;
 import com.miaosha.demo.service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import java.util.List;
 @Controller
 public class ServerController {
 
+    @Autowired
     private HttpServletResponse myHttpResponse;
 
     @RequestMapping(value = "/submit",method = RequestMethod.POST)
@@ -645,56 +647,56 @@ public class ServerController {
                     case ("11"):
                         List<DeathStatistics> deathStatistics = JSONObject.parseArray(str, DeathStatistics.class);
                         for(DeathStatistics data : deathStatistics){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         DeathStatisticsService.insertByJson(deathStatistics);
                         break;
                     case ("12"):
                         List<Shoushang> Shoushanglists = JSONObject.parseArray(str, Shoushang.class);
                         for(Shoushang data : Shoushanglists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ShoushangService.insertByJson(Shoushanglists);
                         break;
                     case ("13"):
                         List<Shizong> Shizonglists = JSONObject.parseArray(str, Shizong.class);
                         for(Shizong data : Shizonglists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ShizongService.insertByJson(Shizonglists);
                         break;
                     case ("21"):
                         List<CivilStructure> civilStructures = JSONObject.parseArray(str, CivilStructure.class);
                         for(CivilStructure data : civilStructures){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         CivilStructureService.insertByJson(civilStructures);
                         break;
                     case ("22"):
                         List<Zhuanmu> Zhuanmulists = JSONObject.parseArray(str,Zhuanmu.class);
                         for(Zhuanmu data : Zhuanmulists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ZhuanmuService.insertByJson(Zhuanmulists);
                         break;
                     case ("23"):
                         List<Zhuanhun> Zhuanhunlists = JSONObject.parseArray(str,Zhuanhun.class);
                         for(Zhuanhun data : Zhuanhunlists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ZhuanhunService.insertByJson(Zhuanhunlists);
                         break;
                     case ("24"):
                         List<Kuangjia> Kuangjialists = JSONObject.parseArray(str,Kuangjia.class);
                         for(Kuangjia data : Kuangjialists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         KuangjiaService.insertByJson(Kuangjialists);
                         break;
                     case ("25"):
                         List<FangwuQita> FangwuQitalists = JSONObject.parseArray(str,FangwuQita.class);
                         for(FangwuQita data : FangwuQitalists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         FangwuQitaService.insertByJson(FangwuQitalists);
                         break;
@@ -702,112 +704,112 @@ public class ServerController {
                     case ("31"):
                         List<Jiaotong> Jiaotonglists = JSONObject.parseArray(str,Jiaotong.class);
                         for(Jiaotong data : Jiaotonglists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         JiaotongService.insertByJson(Jiaotonglists);
                         break;
                     case ("32"):
                         List<Gongshui> Gongshuilists = JSONObject.parseArray(str,Gongshui.class);
                         for(Gongshui data : Gongshuilists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         GongshuiService.insertByJson(Gongshuilists);
                         break;
                     case ("33"):
                         List<Shuyou> Shuyoulists = JSONObject.parseArray(str,Shuyou.class);
                         for(Shuyou data : Shuyoulists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ShuyouService.insertByJson(Shuyoulists);
                         break;
                     case ("34"):
                         List<Ranqi> Ranqilists = JSONObject.parseArray(str,Ranqi.class);
                         for(Ranqi data : Ranqilists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         RanqiService.insertByJson(Ranqilists);
                         break;
                     case ("35"):
                         List<Dianli> Dianlilists = JSONObject.parseArray(str,Dianli.class);
                         for(Dianli data : Dianlilists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         DianliService.insertByJson(Dianlilists);
                         break;
                     case ("36"):
                         List<Disaster> disasters  = JSONObject.parseArray(str, Disaster.class);
                         for (Disaster data: disasters) {
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         DisasterService.insertByJson(disasters);
                         break;
                     case ("37"):
                         List<Shuili> Shuililists = JSONObject.parseArray(str,Shuili.class);
                         for(Shuili data : Shuililists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ShuiliService.insertByJson(Shuililists);
                         break;
                     case ("41"):
                         List<CollapseRecord> collapseRecords = JSONObject.parseArray(str, CollapseRecord.class);
                         for (CollapseRecord data: collapseRecords) {
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         CollapseRecordService.insertByJson(collapseRecords);
                         break;
                     case ("42"):
                         List<Huapo> Huapolists = JSONObject.parseArray(str,Huapo.class);
                         for(Huapo data : Huapolists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         HuapoService.insertByJson(Huapolists);
                         break;
                     case ("43"):
                         List<Nishiliu>Nishiliulists = JSONObject.parseArray(str,Nishiliu.class);
                         for(Nishiliu data : Nishiliulists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         NishiliuService.insertByJson(Nishiliulists);
                         break;
                     case ("44"):
                         List<Yanrongtanta> Yanrongtantalists = JSONObject.parseArray(str,Yanrongtanta.class);
                         for(Yanrongtanta data : Yanrongtantalists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         YanrongtantaService.insertByJson(Yanrongtantalists);
                         break;
                     case ("45"):
                         List<Diliefeng> Diliefenglists = JSONObject.parseArray(str,Diliefeng.class);
                         for(Diliefeng data : Diliefenglists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_"+ data.getReporting_unit());
                         }
                         DiliefengService.insertByJson(Diliefenglists);
                         break;
                     case ("46"):
                         List<Dimianchenjiang> Dimianchenjianglists = JSONObject.parseArray(str,Dimianchenjiang.class);
                         for(Dimianchenjiang data : Dimianchenjianglists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         DimianchenjiangService.insertByJson(Dimianchenjianglists);
                         break;
                     case ("47"):
                         List<CishengzaihaiQita> CishengzaihaiQitalists = JSONObject.parseArray(str,CishengzaihaiQita.class);
                         for(CishengzaihaiQita data : CishengzaihaiQitalists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         CishengzaihaiQitaService.insertByJson(CishengzaihaiQitalists);
                         break;
                     case ("51"):
                         List<ZhenqingJiben> ZhenqingJibenlists = JSONObject.parseArray(str,ZhenqingJiben.class);
                         for(ZhenqingJiben data : ZhenqingJibenlists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         ZhenqingJibenService.insertByJson(ZhenqingJibenlists);
                         break;
                     case ("52"):
                         List<DisasterPrediction> DisasterPredictionlists = JSONObject.parseArray(str,DisasterPrediction.class);
                         for(DisasterPrediction data :DisasterPredictionlists){
-                            data.setReporting_unit(source + data.getReporting_unit());
+                            data.setReporting_unit(DataSourceCode.SourceCodetoString(source) +"_" + data.getReporting_unit());
                         }
                         DisasterPredictionService.insertByJson(DisasterPredictionlists);
                         break;

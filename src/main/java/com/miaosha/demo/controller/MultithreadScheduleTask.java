@@ -33,7 +33,7 @@ public class MultithreadScheduleTask {
                 if(deathStatisticsList != null) {
                 	DeathStatisticsService.beifen();
                     for (DeathStatistics data:deathStatisticsList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DeathStatisticsService.insertByJson(deathStatisticsList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -48,7 +48,7 @@ public class MultithreadScheduleTask {
                 if(shoushangList != null) {
                 	ShoushangService.beifen();
                     for (Shoushang data:shoushangList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ShoushangService.insertByJson(shoushangList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -64,7 +64,7 @@ public class MultithreadScheduleTask {
                 if(ShizongList != null) {
                 	ShizongService.beifen();
                     for (Shizong data : ShizongList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ShizongService.insertByJson(ShizongList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -80,7 +80,7 @@ public class MultithreadScheduleTask {
                 if (civilStructureList != null) {
                 	CivilStructureService.beifen();
                     for (CivilStructure data : civilStructureList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     CivilStructureService.insertByJson(civilStructureList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -96,7 +96,7 @@ public class MultithreadScheduleTask {
                 if (ZhuanmuList != null) {
                 	ZhuanmuService.beifen();
                     for (Zhuanmu data : ZhuanmuList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ZhuanmuService.insertByJson(ZhuanmuList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -112,7 +112,7 @@ public class MultithreadScheduleTask {
                 if (ZhuanhunList != null) {
                 	ZhuanhunService.beifen();
                     for (Zhuanhun data : ZhuanhunList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ZhuanhunService.insertByJson(ZhuanhunList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -128,7 +128,7 @@ public class MultithreadScheduleTask {
                 if (KuangjiaList != null) {
                 	KuangjiaService.beifen();
                     for (Kuangjia data : KuangjiaList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     KuangjiaService.insertByJson(KuangjiaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -144,7 +144,7 @@ public class MultithreadScheduleTask {
                 if (FangwuQitaList != null) {
                 	FangwuQitaService.beifen();
                     for (FangwuQita data : FangwuQitaList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     FangwuQitaService.insertByJson(FangwuQitaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -160,7 +160,7 @@ public class MultithreadScheduleTask {
                 if (JiaotongList != null) {
                 	JiaotongService.beifen();
                     for (Jiaotong data : JiaotongList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     JiaotongService.insertByJson(JiaotongList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -176,7 +176,7 @@ public class MultithreadScheduleTask {
                 if (GongshuiList != null) {
                 	GongshuiService.beifen();
                     for (Gongshui data : GongshuiList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     GongshuiService.insertByJson(GongshuiList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -192,7 +192,7 @@ public class MultithreadScheduleTask {
                 if (ShuyouList != null) {
                 	ShuyouService.beifen();
                     for (Shuyou data : ShuyouList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ShuyouService.insertByJson(ShuyouList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -208,7 +208,7 @@ public class MultithreadScheduleTask {
                 if (RanqiList != null) {
                 	RanqiService.beifen();
                     for (Ranqi data : RanqiList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     RanqiService.insertByJson(RanqiList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -224,7 +224,7 @@ public class MultithreadScheduleTask {
                 if (DianliList != null) {
                 	DianliService.beifen();
                     for (Dianli data : DianliList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DianliService.insertByJson(DianliList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -240,7 +240,7 @@ public class MultithreadScheduleTask {
                 if(disasterList != null){
                 	DisasterService.beifen();
                     for (Disaster data : disasterList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DisasterService.insertByJson(disasterList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -256,7 +256,7 @@ public class MultithreadScheduleTask {
                 if(ShuiliList != null){
                 	ShuiliService.beifen();
                     for (Shuili data : ShuiliList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ShuiliService.insertByJson(ShuiliList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -272,7 +272,7 @@ public class MultithreadScheduleTask {
                 if (collapseRecordList != null) {
                 	CollapseRecordService.beifen();
                     for (CollapseRecord data : collapseRecordList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     CollapseRecordService.insertByJson(collapseRecordList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -288,7 +288,7 @@ public class MultithreadScheduleTask {
                 if(HuapoList != null){
                 	HuapoService.beifen();
                     for (Huapo data : HuapoList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     HuapoService.insertByJson(HuapoList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -304,7 +304,7 @@ public class MultithreadScheduleTask {
                 if(NishiliuList != null){
                 	NishiliuService.beifen();
                     for (Nishiliu data : NishiliuList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     NishiliuService.insertByJson(NishiliuList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -320,7 +320,7 @@ public class MultithreadScheduleTask {
                 if(YanrongtantaList != null){
                 	YanrongtantaService.beifen();
                     for (Yanrongtanta data : YanrongtantaList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     YanrongtantaService.insertByJson(YanrongtantaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -336,7 +336,7 @@ public class MultithreadScheduleTask {
                 if(DiliefengList != null){
                 	DiliefengService.beifen();
                     for (Diliefeng data : DiliefengList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DiliefengService.insertByJson(DiliefengList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -352,7 +352,7 @@ public class MultithreadScheduleTask {
                 if(DimianchenjiangList != null){
                 	DimianchenjiangService.beifen();
                     for (Dimianchenjiang data : DimianchenjiangList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DimianchenjiangService.insertByJson(DimianchenjiangList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -368,7 +368,7 @@ public class MultithreadScheduleTask {
                 if(CishengzaihaiQitaList != null){
                 	CishengzaihaiQitaService.beifen();
                     for (CishengzaihaiQita data : CishengzaihaiQitaList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     CishengzaihaiQitaService.insertByJson(CishengzaihaiQitaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -384,7 +384,7 @@ public class MultithreadScheduleTask {
                 if(ZhenqingJibenList != null){
                 	ZhenqingJibenService.beifen();
                     for (ZhenqingJiben data : ZhenqingJibenList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     ZhenqingJibenService.insertByJson(ZhenqingJibenList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -400,7 +400,7 @@ public class MultithreadScheduleTask {
                 if (disasterPredictionList != null) {
                 	DisasterPredictionService.beifen();
                     for (DisasterPrediction data : disasterPredictionList) {
-                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
+                        data.setReporting_unit(DataSourceCode.SourceCodetoString(tmp) + "_" + data.getReporting_unit());
                     }
                     DisasterPredictionService.insertByJson(disasterPredictionList);
                     System.out.println("上传数据已更新，数据如下：");

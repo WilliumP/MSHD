@@ -2,6 +2,7 @@ package com.miaosha.demo.json;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.miaosha.demo.domain.*;
+import com.miaosha.demo.service.DisasterDataCode;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -10,29 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OperateJsonFile {
-
-	// 字典缓存
-    
-	public HashMap<String,String[]>  initMap(){
-    	HashMap<String,String[]> mapInfo = new HashMap<>();
-    	try {
-			  //File file = new File((System.getProperty("user.dir")+"\\src\\main\\java\\com\\miaosha\\demo\\json\\dictionary.txt"));
-              File file = new File("/home/jar/resource/dictionary.txt");
-    		  //File file = new File("F:/datasource/dictionary.txt");
-			  BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-			  String strLine = null;
-	          
-			  while(null != (strLine = bufferedReader.readLine())){
-
-	        	  String[] split=strLine.split(" ");
-	        	  //System.out.println("id:"+split[0]+"  hash:"+split[0].hashCode()+" length:"+split[0].length());
-	              mapInfo.put(split[0],Arrays.copyOfRange(split, 1, 6));
-			  }
-		  }catch(Exception e){
-	            e.printStackTrace();
-	      }
-    	return mapInfo;
-    }
 	
     //读文件
     public List<DeathStatistics> read_deathStatisticsList(String fileName) throws Exception{
@@ -56,14 +34,13 @@ public class OperateJsonFile {
         }
 
         for(int i=0;i<list.size();i++) {
-        	  String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location= DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         
         return list;
@@ -87,14 +64,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -117,14 +93,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -146,14 +121,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -175,14 +149,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -204,14 +177,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -233,14 +205,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -262,14 +233,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -291,14 +261,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -320,14 +290,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -349,14 +319,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -378,14 +348,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -407,14 +377,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -436,14 +406,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -465,14 +435,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setGrade(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -494,14 +464,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -523,14 +493,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -552,14 +522,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -581,14 +551,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -610,14 +580,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -639,14 +609,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -668,14 +638,14 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
+            list.get(i).setStatus(list.get(i).getId().substring(18,19));
         }
         return list;
     }
@@ -697,14 +667,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
@@ -726,14 +695,13 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-        	String id = list.get(i).getId().substring(0,12);
-        	  HashMap<String,String[]> mapInfo=initMap();
-          	  String[] location=mapInfo.get(id);
-          	  if(location!=null)
-          		list.get(i).setLocation(location[0]+" "+location[1]+" "+location[2]+" "+location[3]+" "+location[4]);
-          	  else {
-          		  System.out.println("error when set location in " + fileName);
-          	  }
+            String id = list.get(i).getId().substring(0,12);
+            String location=DisasterDataCode.locationCodetoData(id);
+            if(location!=null)
+                list.get(i).setLocation(location);
+            else {
+                System.out.println("error when set location in " + fileName);
+            }
         }
         return list;
     }
