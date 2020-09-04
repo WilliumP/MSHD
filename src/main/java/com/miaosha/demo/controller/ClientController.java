@@ -22,13 +22,14 @@ public class ClientController {
 
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
 	public String someoneWantDownload(@RequestParam("disasterOptions") String disasterOptions, @RequestParam("url") String url,
-									  @RequestParam("request_unit") String re, @RequestParam("code") String code) {
+									  @RequestParam("request_unit") String re, @RequestParam("code") Integer code) {
 		DisasterRequest dr = new DisasterRequest();
 		Date date = new Date();
 		dr.setDisaster_type(disasterOptions);
 		dr.setO_url(url);
 		dr.setStatus("0");
 		dr.setRequest_unit(re);
+		dr.setCode(code);
 		dr.setId("1111111111111111111");
 
 		String strDateFormat = "yyyy-MM-dd HH:mm:ss";

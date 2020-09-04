@@ -824,7 +824,18 @@ public class OperateJsonFile {
     }
 
 
-
+    public void export(String[] id, String fileName) throws Exception{
+        String path = "/home/jar/resource/output/" + fileName;
+        File file = new File(path);
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+        }
+        String jsons = JSON.toJSONString(id);
+        Writer writer = new OutputStreamWriter(new FileOutputStream(file),"UTF-8");
+        writer.write(jsons);
+        writer.flush();
+        writer.close();
+    }
     //导出到output文件
     public void export_deathStatistics(List<DeathStatistics> list, String fileName) throws Exception{
         String path = "/home/jar/resource/output/" + fileName;

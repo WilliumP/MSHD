@@ -14,6 +14,7 @@ public class DisasterRequest {
 	private String status;
 	private String o_url;
 	private String request_unit;
+	private int code;
 	
 	public DisasterRequest() {}
 	public DisasterRequest(String key, String id, String date, String disaster_type, String status, String o_url,
@@ -68,7 +69,12 @@ public class DisasterRequest {
 	public void setRequest_unit(String request_unit) {
 		this.request_unit = request_unit;
 	}
-	
-	
-	
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
 }

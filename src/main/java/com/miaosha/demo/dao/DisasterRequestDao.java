@@ -6,16 +6,16 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface DisasterRequestDao {
-    @Insert("INSERT INTO disaster_request(`id`, `date`, `disaster_type`, `status`, `o_url`, `request_unit`) VALUES " +
+    @Insert("INSERT INTO disaster_request(`id`, `date`, `disaster_type`, `status`, `o_url`, `request_unit`,`code`) VALUES " +
             "(#{dr.id},#{dr.date},#{dr.disaster_type},#{dr.status}," +
-            "#{dr.o_url},#{dr.request_unit})")
+            "#{dr.o_url},#{dr.request_unit},#{dr.code})")
     void Insert(@Param("dr") DisasterRequest dr);
 
     @Select("select * from disaster_request ORDER BY `date` ASC")
     List<DisasterRequest> selectAll();
 
     @Select("select * from disaster_request where `key` = #{key}")
-    List<DisasterRequest> selectByKey(@Param("key") String key);
+    DisasterRequest selectByKey(@Param("key") String key);
     
     @Select("select * from disaster_request where `status` = 0 ORDER BY `date` ASC")
     List<DisasterRequest> selectNotSend();

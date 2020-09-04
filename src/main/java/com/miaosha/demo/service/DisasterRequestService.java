@@ -31,7 +31,7 @@ public class DisasterRequestService {
     	drdao.Insert(dp);
     }
     
-    public static List<DisasterRequest> selectByKey(String key) {return drdao.selectByKey(key);}
+    public static DisasterRequest selectByKey(String key) {return drdao.selectByKey(key);}
     
     public static List<DisasterRequest> selectNotSend(){return drdao.selectNotSend();}
     

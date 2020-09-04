@@ -1,6 +1,5 @@
 package com.miaosha.demo.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.miaosha.demo.domain.*;
@@ -10,7 +9,6 @@ import com.miaosha.demo.service.DisasterRequestService;
 import com.miaosha.demo.service.DisasterService;
 import com.miaosha.demo.service.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +25,12 @@ import java.util.List;
 @Controller
 public class ServerController {
 
-    @Autowired
     private HttpServletResponse myHttpResponse;
 
     @RequestMapping(value = "/submit",method = RequestMethod.POST)
     @ResponseBody
     public String isLogin(@RequestParam("username") String username,
-                        @RequestParam("password") String password, Model model){
+                        @RequestParam("password") String password){
         if(UserService.checkLogin(username, password)){
             return "success";
         }
@@ -68,15 +65,14 @@ public class ServerController {
     
     //查看灾情信息
     @RequestMapping("/adminViewData")
-    public String viewData(Model model){
+    public String viewData(){
         return "Server_showInfor";
     }
-    List<User>  usrList=null;
     
     //用户管理
     @RequestMapping("/adminUserManage")
     public String userManage(Model model){
-    	usrList=UserService.selectAll();
+        List<User> usrList=UserService.selectAll();
     	model.addAttribute("User", usrList);
         return "Server_UsrManage";
     }
@@ -139,216 +135,311 @@ public class ServerController {
     @RequestMapping(value = "/Quests", method = RequestMethod.PUT)
     @ResponseBody
     //ResponseEntity<byte[]>
-    public String sendsolve(@RequestParam("key") String key) {
-    	List<DisasterRequest> dr = DisasterRequestService.selectByKey(key);
-    	String disasterOptions = dr.get(0).getDisaster_type();
-    	String url = dr.get(0).getO_url();
-    	
+    public String sendsolve(@RequestParam("key") String key) throws Exception {
+    	DisasterRequest dr = DisasterRequestService.selectByKey(key);
+    	String disasterOptions = dr.getDisaster_type();
+    	String url = dr.getO_url();
+    	Integer code = dr.getCode();
         OperateJsonFile op = new OperateJsonFile();
+
         switch (disasterOptions){
             case ("111"):
                 List<DeathStatistics> deathStatistics = DeathStatisticsService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[deathStatistics.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = deathStatistics.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_deathStatistics(deathStatistics, url + "/death_statistics.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
-
             case ("112"):
                 List<Shoushang> shoushangList = ShoushangService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[shoushangList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = shoushangList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Shoushang(shoushangList, url + "/Shoushang.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("113"):
                 List<Shizong> ShizongList = ShizongService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[ShizongList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = ShizongList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Shizong(ShizongList, url + "/Shizong.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
 
             case ("221"):
                 List<CivilStructure> civilStructures = CivilStructureService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[civilStructures.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = civilStructures.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_civilStructure(civilStructures, url + "/civil_structure.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("222"):
                 List<Zhuanmu> Zhuanmus = ZhuanmuService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Zhuanmus.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Zhuanmus.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Zhuanmu(Zhuanmus, url + "/Zhuanmu.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("223"):
                 List<Zhuanhun> Zhuanhuns = ZhuanhunService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Zhuanhuns.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Zhuanhuns.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Zhuanhun(Zhuanhuns, url + "/Zhuanhun.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("224"):
                 List<Kuangjia> Kuangjias = KuangjiaService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Kuangjias.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Kuangjias.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Kuangjia(Kuangjias, url + "/Kuangjia.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("225"):
                 List<FangwuQita> FangwuQitas = FangwuQitaService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[FangwuQitas.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = FangwuQitas.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_FangwuQita(FangwuQitas, url + "/FangwuQita.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
 
             case ("331"):
                 List<Jiaotong> Jiaotongs = JiaotongService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Jiaotongs.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Jiaotongs.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Jiaotong(Jiaotongs, url + "/Jiaotong.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("332"):
                 List<Gongshui> Gongshuis = GongshuiService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Gongshuis.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Gongshuis.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Gongshui(Gongshuis, url + "/Gongshui.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("333"):
                 List<Shuyou> Shuyous = ShuyouService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Shuyous.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Shuyous.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Shuyou(Shuyous, url + "/Shuyou.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("334"):
                 List<Ranqi> Ranqis = RanqiService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Ranqis.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Ranqis.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Ranqi(Ranqis, url + "/Ranqi.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("335"):
                 List<Dianli> Dianlis = DianliService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[Dianlis.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = Dianlis.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Dianli(Dianlis, url + "/Dianli.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("336"):
                 List<Disaster> disasters  = DisasterService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[disasters.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = disasters.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_disaster(disasters, url + "/comm_disaster.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("337"):
                 List<Shuili> ShuiliList = ShuiliService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[ShuiliList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = ShuiliList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Shuili(ShuiliList, url + "/Shuili.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
 
-
             case ("441"):
                 List<CollapseRecord> collapseRecords = CollapseRecordService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[collapseRecords.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = collapseRecords.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_collapseRecord(collapseRecords, url + "/collapse_record.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("442"):
                 List<Huapo> HuapoList = HuapoService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[HuapoList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = HuapoList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Huapo(HuapoList, url + "/Huapo.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("443"):
                 List<Nishiliu> NishiliuList = NishiliuService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[NishiliuList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = NishiliuList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Nishiliu(NishiliuList, url + "/Nishiliu.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("444"):
                 List<Yanrongtanta> YanrongtantaList = YanrongtantaService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[YanrongtantaList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = YanrongtantaList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Yanrongtanta(YanrongtantaList, url + "/Yanrongtanta.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("445"):
                 List<Diliefeng> DiliefengList = DiliefengService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[DiliefengList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = DiliefengList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Diliefeng(DiliefengList, url + "/Diliefeng.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("446"):
                 List<Dimianchenjiang> DimianchenjiangList = DimianchenjiangService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[DimianchenjiangList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = DimianchenjiangList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_Dimianchenjiang(DimianchenjiangList, url + "/Dimianchenjiang.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("447"):
                 List<CishengzaihaiQita> CishengzaihaiQitaList = CishengzaihaiQitaService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[CishengzaihaiQitaList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = CishengzaihaiQitaList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_CishengzaihaiQita(CishengzaihaiQitaList, url + "/CishengzaihaiQita.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
 
 
             case ("551"):
                 List<ZhenqingJiben> ZhenqingJibenList = ZhenqingJibenService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[ZhenqingJibenList.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = ZhenqingJibenList.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_ZhenqingJiben(ZhenqingJibenList, url + "/ZhenqingJiben.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case ("552"):
                 List<DisasterPrediction> disasterPredictions = DisasterPredictionService.selectAll();
-                try {
+                if(code == 0){
+                    String[] ids = new String[disasterPredictions.size()];
+                    for(int i=0; i < ids.length; i++){
+                        ids[i] = disasterPredictions.get(i).getId();
+                    }
+                    op.export(ids, "/非编码/" + mapType.get(disasterOptions) + ".txt");
+                }else{
                     op.export_disasterPrediction(disasterPredictions, url + "/disaster_prediction.json");
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             default:
                 break;
         }
-        DisasterRequestService.send(dr.get(0));
+        DisasterRequestService.send(dr);
         return "success";
 //        InputStream in = new ByteArrayInputStream(str.getBytes());
 //        body = new byte[in.available()];
@@ -731,14 +822,7 @@ public class ServerController {
                 out.println("history.back();");
                 out.println("</script>");
                 //return "数据：" + str + "\n" + "导入成功";
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-                out.flush();
-                out.println("<script>");
-                out.println("alert('Import Failure!');");
-                out.println("history.back();");
-                out.println("</script>");
-            } catch (IOException e) {
+            } catch (IllegalStateException | IOException e) {
                 e.printStackTrace();
                 out.flush();
                 out.println("<script>");

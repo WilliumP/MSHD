@@ -16,15 +16,15 @@ import java.util.List;
 @EnableAsync        // 2.开启多线程
 public class MultithreadScheduleTask {
 
-    OperateJsonFile op = new OperateJsonFile();
+    private OperateJsonFile op = new OperateJsonFile();
 
-    String[] prefix = new String[]{"101","102","103",
+    private String[] prefix = new String[]{"101","102","103",
                                     "104","105","201",
                                     "202","203","204",
                                     "301","302","303",
                                     "304","401"};
     @Async
-    @Scheduled(fixedDelay = 1200000)  //间隔1分钟
+    @Scheduled(fixedDelay = 1200000)  //间隔2分钟
     public void first() {
         try {
             //死亡
@@ -32,9 +32,8 @@ public class MultithreadScheduleTask {
                 List<DeathStatistics> deathStatisticsList = op.read_deathStatisticsList(tmp + "/death_statistics.json");
                 if(deathStatisticsList != null) {
                 	DeathStatisticsService.beifen();
-                    for (DeathStatistics deathStatistics : deathStatisticsList) {
-                        String a = deathStatistics.getReporting_unit();
-                        deathStatistics.setReporting_unit(tmp + "_" + a);
+                    for (DeathStatistics data:deathStatisticsList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DeathStatisticsService.insertByJson(deathStatisticsList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -48,9 +47,8 @@ public class MultithreadScheduleTask {
                 List<Shoushang> shoushangList = op.read_ShoushangList(tmp + "/Shoushang.json");
                 if(shoushangList != null) {
                 	ShoushangService.beifen();
-                    for (Shoushang shoushang : shoushangList) {
-                        String a = shoushang.getReporting_unit();
-                        shoushang.setReporting_unit(tmp + "_" + a);
+                    for (Shoushang data:shoushangList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ShoushangService.insertByJson(shoushangList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -65,9 +63,8 @@ public class MultithreadScheduleTask {
                 List<Shizong> ShizongList = op.read_ShizongList(tmp + "/Shizong.json");
                 if(ShizongList != null) {
                 	ShizongService.beifen();
-                    for (Shizong shizong : ShizongList) {
-                        String a = shizong.getReporting_unit();
-                        shizong.setReporting_unit(tmp + "_" + a);
+                    for (Shizong data : ShizongList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ShizongService.insertByJson(ShizongList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -82,9 +79,8 @@ public class MultithreadScheduleTask {
                 List<CivilStructure> civilStructureList = op.read_civilStructureList(tmp + "/civil_structure.json");
                 if (civilStructureList != null) {
                 	CivilStructureService.beifen();
-                    for (CivilStructure civilStructure : civilStructureList) {
-                        String a = civilStructure.getReporting_unit();
-                        civilStructure.setReporting_unit(tmp + "_" + a);
+                    for (CivilStructure data : civilStructureList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     CivilStructureService.insertByJson(civilStructureList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -99,9 +95,8 @@ public class MultithreadScheduleTask {
                 List<Zhuanmu> ZhuanmuList = op.read_ZhuanmuList(tmp + "/Zhuanmu.json");
                 if (ZhuanmuList != null) {
                 	ZhuanmuService.beifen();
-                    for (Zhuanmu zhuanmu : ZhuanmuList) {
-                        String a = zhuanmu.getReporting_unit();
-                        zhuanmu.setReporting_unit(tmp + "_" + a);
+                    for (Zhuanmu data : ZhuanmuList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ZhuanmuService.insertByJson(ZhuanmuList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -116,9 +111,8 @@ public class MultithreadScheduleTask {
                 List<Zhuanhun> ZhuanhunList = op.read_ZhuanhunList(tmp + "/Zhuanhun.json");
                 if (ZhuanhunList != null) {
                 	ZhuanhunService.beifen();
-                    for (Zhuanhun zhuanhun : ZhuanhunList) {
-                        String a = zhuanhun.getReporting_unit();
-                        zhuanhun.setReporting_unit(tmp + "_" + a);
+                    for (Zhuanhun data : ZhuanhunList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ZhuanhunService.insertByJson(ZhuanhunList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -133,9 +127,8 @@ public class MultithreadScheduleTask {
                 List<Kuangjia> KuangjiaList = op.read_KuangjiaList(tmp + "/Kuangjia.json");
                 if (KuangjiaList != null) {
                 	KuangjiaService.beifen();
-                    for (Kuangjia kuangjia : KuangjiaList) {
-                        String a = kuangjia.getReporting_unit();
-                        kuangjia.setReporting_unit(tmp + "_" + a);
+                    for (Kuangjia data : KuangjiaList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     KuangjiaService.insertByJson(KuangjiaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -150,9 +143,8 @@ public class MultithreadScheduleTask {
                 List<FangwuQita> FangwuQitaList = op.read_FangwuQitaList(tmp + "/FangwuQita.json");
                 if (FangwuQitaList != null) {
                 	FangwuQitaService.beifen();
-                    for (FangwuQita fangwuQita : FangwuQitaList) {
-                        String a = fangwuQita.getReporting_unit();
-                        fangwuQita.setReporting_unit(tmp + "_" + a);
+                    for (FangwuQita data : FangwuQitaList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     FangwuQitaService.insertByJson(FangwuQitaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -167,9 +159,8 @@ public class MultithreadScheduleTask {
                 List<Jiaotong> JiaotongList = op.read_JiaotongList(tmp + "/Jiaotong.json");
                 if (JiaotongList != null) {
                 	JiaotongService.beifen();
-                    for (Jiaotong jiaotong : JiaotongList) {
-                        String a = jiaotong.getReporting_unit();
-                        jiaotong.setReporting_unit(tmp + "_" + a);
+                    for (Jiaotong data : JiaotongList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     JiaotongService.insertByJson(JiaotongList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -184,9 +175,8 @@ public class MultithreadScheduleTask {
                 List<Gongshui> GongshuiList = op.read_GongshuiList(tmp + "/Gongshui.json");
                 if (GongshuiList != null) {
                 	GongshuiService.beifen();
-                    for (Gongshui gongshui : GongshuiList) {
-                        String a = gongshui.getReporting_unit();
-                        gongshui.setReporting_unit(tmp + "_" + a);
+                    for (Gongshui data : GongshuiList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     GongshuiService.insertByJson(GongshuiList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -201,9 +191,8 @@ public class MultithreadScheduleTask {
                 List<Shuyou> ShuyouList = op.read_ShuyouList(tmp + "/Shuyou.json");
                 if (ShuyouList != null) {
                 	ShuyouService.beifen();
-                    for (Shuyou shuyou : ShuyouList) {
-                        String a = shuyou.getReporting_unit();
-                        shuyou.setReporting_unit(tmp + "_" + a);
+                    for (Shuyou data : ShuyouList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ShuyouService.insertByJson(ShuyouList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -218,9 +207,8 @@ public class MultithreadScheduleTask {
                 List<Ranqi> RanqiList = op.read_RanqiList(tmp + "/Ranqi.json");
                 if (RanqiList != null) {
                 	RanqiService.beifen();
-                    for (Ranqi ranqi : RanqiList) {
-                        String a = ranqi.getReporting_unit();
-                        ranqi.setReporting_unit(tmp + "_" + a);
+                    for (Ranqi data : RanqiList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     RanqiService.insertByJson(RanqiList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -235,9 +223,8 @@ public class MultithreadScheduleTask {
                 List<Dianli> DianliList = op.read_DianliList(tmp + "/Dianli.json");
                 if (DianliList != null) {
                 	DianliService.beifen();
-                    for (Dianli dianli : DianliList) {
-                        String a = dianli.getReporting_unit();
-                        dianli.setReporting_unit(tmp + "_" + a);
+                    for (Dianli data : DianliList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DianliService.insertByJson(DianliList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -252,9 +239,8 @@ public class MultithreadScheduleTask {
                 List<Disaster> disasterList = op.read_disasterList(tmp + "/comm_disaster.json");
                 if(disasterList != null){
                 	DisasterService.beifen();
-                    for (Disaster disaster : disasterList) {
-                        String a = disaster.getReporting_unit();
-                        disaster.setReporting_unit(tmp + "_" + a);
+                    for (Disaster data : disasterList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DisasterService.insertByJson(disasterList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -269,9 +255,8 @@ public class MultithreadScheduleTask {
                 List<Shuili> ShuiliList = op.read_ShuiliList(tmp + "/Shuili.json");
                 if(ShuiliList != null){
                 	ShuiliService.beifen();
-                    for (Shuili shuili : ShuiliList) {
-                        String a = shuili.getReporting_unit();
-                        shuili.setReporting_unit(tmp + "_" + a);
+                    for (Shuili data : ShuiliList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ShuiliService.insertByJson(ShuiliList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -286,9 +271,8 @@ public class MultithreadScheduleTask {
                 List<CollapseRecord> collapseRecordList = op.read_collapseRecordList(tmp + "/collapse_record.json");
                 if (collapseRecordList != null) {
                 	CollapseRecordService.beifen();
-                    for (CollapseRecord collapseRecord : collapseRecordList) {
-                        String a = collapseRecord.getReporting_unit();
-                        collapseRecord.setReporting_unit(tmp + "_" + a);
+                    for (CollapseRecord data : collapseRecordList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     CollapseRecordService.insertByJson(collapseRecordList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -303,9 +287,8 @@ public class MultithreadScheduleTask {
                 List<Huapo> HuapoList = op.read_HuapoList(tmp + "/Huapo.json");
                 if(HuapoList != null){
                 	HuapoService.beifen();
-                    for (Huapo huapo : HuapoList) {
-                        String a = huapo.getReporting_unit();
-                        huapo.setReporting_unit(tmp + "_" + a);
+                    for (Huapo data : HuapoList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     HuapoService.insertByJson(HuapoList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -320,9 +303,8 @@ public class MultithreadScheduleTask {
                 List<Nishiliu> NishiliuList = op.read_NishiliuList(tmp + "/Nishiliu.json");
                 if(NishiliuList != null){
                 	NishiliuService.beifen();
-                    for (Nishiliu nishiliu : NishiliuList) {
-                        String a = nishiliu.getReporting_unit();
-                        nishiliu.setReporting_unit(tmp + "_" + a);
+                    for (Nishiliu data : NishiliuList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     NishiliuService.insertByJson(NishiliuList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -337,9 +319,8 @@ public class MultithreadScheduleTask {
                 List<Yanrongtanta> YanrongtantaList = op.read_YanrongtantaList(tmp + "/Yanrongtanta.json");
                 if(YanrongtantaList != null){
                 	YanrongtantaService.beifen();
-                    for (Yanrongtanta yanrongtanta : YanrongtantaList) {
-                        String a = yanrongtanta.getReporting_unit();
-                        yanrongtanta.setReporting_unit(tmp + "_" + a);
+                    for (Yanrongtanta data : YanrongtantaList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     YanrongtantaService.insertByJson(YanrongtantaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -354,9 +335,8 @@ public class MultithreadScheduleTask {
                 List<Diliefeng> DiliefengList = op.read_DiliefengList(tmp + "/Diliefeng.json");
                 if(DiliefengList != null){
                 	DiliefengService.beifen();
-                    for (Diliefeng diliefeng : DiliefengList) {
-                        String a = diliefeng.getReporting_unit();
-                        diliefeng.setReporting_unit(tmp + "_" + a);
+                    for (Diliefeng data : DiliefengList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DiliefengService.insertByJson(DiliefengList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -371,9 +351,8 @@ public class MultithreadScheduleTask {
                 List<Dimianchenjiang> DimianchenjiangList = op.read_DimianchenjiangList(tmp + "/Dimianchenjiang.json");
                 if(DimianchenjiangList != null){
                 	DimianchenjiangService.beifen();
-                    for (Dimianchenjiang dimianchenjiang : DimianchenjiangList) {
-                        String a = dimianchenjiang.getReporting_unit();
-                        dimianchenjiang.setReporting_unit(tmp + "_" + a);
+                    for (Dimianchenjiang data : DimianchenjiangList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DimianchenjiangService.insertByJson(DimianchenjiangList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -388,9 +367,8 @@ public class MultithreadScheduleTask {
                 List<CishengzaihaiQita> CishengzaihaiQitaList = op.read_CishengzaihaiQitaList(tmp + "/CishengzaihaiQita.json");
                 if(CishengzaihaiQitaList != null){
                 	CishengzaihaiQitaService.beifen();
-                    for (CishengzaihaiQita cishengzaihaiQita : CishengzaihaiQitaList) {
-                        String a = cishengzaihaiQita.getReporting_unit();
-                        cishengzaihaiQita.setReporting_unit(tmp + "_" + a);
+                    for (CishengzaihaiQita data : CishengzaihaiQitaList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     CishengzaihaiQitaService.insertByJson(CishengzaihaiQitaList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -405,9 +383,8 @@ public class MultithreadScheduleTask {
                 List<ZhenqingJiben> ZhenqingJibenList = op.read_ZhenqingJibenList(tmp + "/ZhenqingJiben.json");
                 if(ZhenqingJibenList != null){
                 	ZhenqingJibenService.beifen();
-                    for (ZhenqingJiben zhenqingJiben : ZhenqingJibenList) {
-                        String a = zhenqingJiben.getReporting_unit();
-                        zhenqingJiben.setReporting_unit(tmp + "_" + a);
+                    for (ZhenqingJiben data : ZhenqingJibenList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     ZhenqingJibenService.insertByJson(ZhenqingJibenList);
                     System.out.println("上传数据已更新，数据如下：");
@@ -422,9 +399,8 @@ public class MultithreadScheduleTask {
                 List<DisasterPrediction> disasterPredictionList = op.read_disasterPredictionList(tmp + "/disaster_prediction.json");
                 if (disasterPredictionList != null) {
                 	DisasterPredictionService.beifen();
-                    for (DisasterPrediction disasterPrediction : disasterPredictionList) {
-                        String a = disasterPrediction.getReporting_unit();
-                        disasterPrediction.setReporting_unit(tmp + "_" + a);
+                    for (DisasterPrediction data : disasterPredictionList) {
+                        data.setReporting_unit(tmp + "_" + data.getReporting_unit());
                     }
                     DisasterPredictionService.insertByJson(disasterPredictionList);
                     System.out.println("上传数据已更新，数据如下：");
