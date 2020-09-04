@@ -22,7 +22,7 @@ public class ClientController {
 
 	@RequestMapping(value = "/download", method = RequestMethod.POST)
 	public String someoneWantDownload(@RequestParam("disasterOptions") String disasterOptions, @RequestParam("url") String url,
-									  @RequestParam("request_unit") String re) {
+									  @RequestParam("request_unit") String re, @RequestParam("code") String code) {
 		DisasterRequest dr = new DisasterRequest();
 		Date date = new Date();
 		dr.setDisaster_type(disasterOptions);
