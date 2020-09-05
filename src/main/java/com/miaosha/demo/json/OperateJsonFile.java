@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OperateJsonFile {
-	
+	private static String mypath=System.getProperty("user.dir")+"/home/jar/resource/input/data/";
     //读文件
     public List<DeathStatistics> read_deathStatisticsList(String fileName) throws Exception{
         List<DeathStatistics> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path = mypath + fileName;
         // String path = "F:/datasource/"+fileName;
         //String path = OperateJsonFile.class.getClassLoader().getResource(fileName).getPath();
         InputStream inputStream = new FileInputStream(path);
@@ -32,14 +32,25 @@ public class OperateJsonFile {
         if(list == null){
             return list;
         }
-
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location= DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
+        	
+            String id = list.get(i).getId();
+            if(id!=null&&id!="") {
+            	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	        }
             else {
-                System.out.println("error when set location in " + fileName);
+            	String loca=list.get(i).getLocation();
+            	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+            	int max=9999,min=1000;
+            	int ran = (int) (Math.random()*(max-min)+min); 
+            	String code=locationCode+"111"+String.valueOf(ran);
+            	list.get(i).setId(code);
             }
         }
         
@@ -48,7 +59,7 @@ public class OperateJsonFile {
 
     public List<Shoushang> read_ShoushangList(String fileName) throws Exception{
         List<Shoushang> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Shoushang.class);
@@ -64,20 +75,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"112"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Shizong> read_ShizongList(String fileName) throws Exception{
         List<Shizong> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         //String path = OperateJsonFile.class.getClassLoader().getResource(fileName).getPath();
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
@@ -93,20 +115,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"113"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<CivilStructure> read_civilStructureList(String fileName) throws Exception{
         List<CivilStructure> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, CivilStructure.class);
@@ -121,20 +154,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"221"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Zhuanmu> read_ZhuanmuList(String fileName) throws Exception{
         List<Zhuanmu> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path = mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Zhuanmu.class);
@@ -149,20 +193,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"222"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Zhuanhun> read_ZhuanhunList(String fileName) throws Exception{
         List<Zhuanhun> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Zhuanhun.class);
@@ -177,20 +232,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"223"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Kuangjia> read_KuangjiaList(String fileName) throws Exception{
         List<Kuangjia> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath+ fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Kuangjia.class);
@@ -205,20 +271,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"224"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<FangwuQita> read_FangwuQitaList(String fileName) throws Exception{
         List<FangwuQita> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path = mypath+ fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, FangwuQita.class);
@@ -233,20 +310,31 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=9999,min=1000;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"225"+String.valueOf(ran);
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Jiaotong> read_JiaotongList(String fileName) throws Exception{
         List<Jiaotong> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Jiaotong.class);
@@ -261,21 +349,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+        	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+ 	            String location= DisasterDataCode.locationCodetoData(id);
+ 	            if(location!=null)
+ 	                list.get(i).setLocation(location);
+ 	            else {
+ 	                System.out.println("error when set location in " + fileName);
+ 	            }
+ 	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+ 	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"331"+String.valueOf(ran)+list.get(i).getGrade();
+             	list.get(i).setId(code);
+             }
+            
         }
         return list;
     }
 
     public List<Gongshui> read_GongshuiList(String fileName) throws Exception{
         List<Gongshui> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Gongshui.class);
@@ -290,21 +390,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"332"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
     
     public List<Shuyou> read_ShuyouList(String fileName) throws Exception{
         List<Shuyou> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath+ fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Shuyou.class);
@@ -319,21 +431,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"333"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
 
     public List<Ranqi> read_RanqiList(String fileName) throws Exception{
         List<Ranqi> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Ranqi.class);
@@ -348,21 +472,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"334"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
 
     public List<Dianli> read_DianliList(String fileName) throws Exception{
         List<Dianli> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Dianli.class);
@@ -377,21 +513,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"335"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
 
     public List<Disaster> read_disasterList(String fileName) throws Exception{
         List<Disaster> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Disaster.class);
@@ -406,21 +554,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"336"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
 
     public List<Shuili> read_ShuiliList(String fileName) throws Exception{
         List<Shuili> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath+ fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Shuili.class);
@@ -435,21 +595,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setGrade(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setGrade(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"337"+String.valueOf(ran)+list.get(i).getGrade();
+         	list.get(i).setId(code);
+         }        
         }
         return list;
     }
 
     public List<CollapseRecord> read_collapseRecordList(String fileName) throws Exception{
         List<CollapseRecord> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, CollapseRecord.class);
@@ -464,21 +635,33 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+       	 String id = list.get(i).getId();
+         if(id!=null&&id!="") {
+         	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+	        }
+         else {
+         	String loca=list.get(i).getLocation();
+         	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+         	int max=999,min=100;
+         	int ran = (int) (Math.random()*(max-min)+min); 
+         	String code=locationCode+"441"+String.valueOf(ran)+list.get(i).getStatus();
+         	list.get(i).setId(code);
+         }
+        
         }
         return list;
     }
 
     public List<Huapo> read_HuapoList(String fileName) throws Exception{
         List<Huapo> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Huapo.class);
@@ -493,21 +676,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+          	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"442"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Nishiliu> read_NishiliuList(String fileName) throws Exception{
         List<Nishiliu> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Nishiliu.class);
@@ -522,21 +716,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+          	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"443"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Yanrongtanta> read_YanrongtantaList(String fileName) throws Exception{
         List<Yanrongtanta> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Yanrongtanta.class);
@@ -551,21 +756,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+          	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"444"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Diliefeng> read_DiliefengList(String fileName) throws Exception{
         List<Diliefeng> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Diliefeng.class);
@@ -580,21 +796,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+          	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"445"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<Dimianchenjiang> read_DimianchenjiangList(String fileName) throws Exception{
         List<Dimianchenjiang> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, Dimianchenjiang.class);
@@ -609,21 +836,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+         	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"446"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<CishengzaihaiQita> read_CishengzaihaiQitaList(String fileName) throws Exception{
         List<CishengzaihaiQita> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, CishengzaihaiQita.class);
@@ -638,21 +876,32 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
-            else {
-                System.out.println("error when set location in " + fileName);
-            }
-            list.get(i).setStatus(list.get(i).getId().substring(18,19));
+         	 String id = list.get(i).getId();
+             if(id!=null&&id!="") {
+             	id=id.substring(0,12);
+    	            String location= DisasterDataCode.locationCodetoData(id);
+    	            if(location!=null)
+    	                list.get(i).setLocation(location);
+    	            else {
+    	                System.out.println("error when set location in " + fileName);
+    	            }
+    	           list.get(i).setStatus(list.get(i).getId().substring(18,19));
+    	        }
+             else {
+             	String loca=list.get(i).getLocation();
+             	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+             	int max=999,min=100;
+             	int ran = (int) (Math.random()*(max-min)+min); 
+             	String code=locationCode+"447"+String.valueOf(ran)+list.get(i).getStatus();
+             	list.get(i).setId(code);
+             }
         }
         return list;
     }
 
     public List<ZhenqingJiben> read_ZhenqingJibenList(String fileName) throws Exception{
         List<ZhenqingJiben> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path = mypath+ fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, ZhenqingJiben.class);
@@ -667,12 +916,23 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
+        	String id = list.get(i).getId();
+            if(id!=null&&id!="") {
+            	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	        }
             else {
-                System.out.println("error when set location in " + fileName);
+            	String loca=list.get(i).getLocation();
+            	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+            	int max=9999,min=1000;
+            	int ran = (int) (Math.random()*(max-min)+min); 
+            	String code=locationCode+"551"+String.valueOf(ran);
+            	list.get(i).setId(code);
             }
         }
         return list;
@@ -680,7 +940,7 @@ public class OperateJsonFile {
 
     public List<DisasterPrediction> read_disasterPredictionList(String fileName) throws Exception{
         List<DisasterPrediction> list = null;
-        String path = "/home/jar/resource/input/data/" + fileName;
+        String path =  mypath + fileName;
         InputStream inputStream = new FileInputStream(path);
         String text = IOUtils.toString(inputStream,"utf8");
         list = JSONObject.parseArray(text, DisasterPrediction.class);
@@ -695,21 +955,27 @@ public class OperateJsonFile {
             return list;
         }
         for(int i=0;i<list.size();i++) {
-            String id = list.get(i).getId().substring(0,12);
-            String location=DisasterDataCode.locationCodetoData(id);
-            if(location!=null)
-                list.get(i).setLocation(location);
+        	String id = list.get(i).getId();
+            if(id!=null&&id!="") {
+            	id=id.substring(0,12);
+	            String location= DisasterDataCode.locationCodetoData(id);
+	            if(location!=null)
+	                list.get(i).setLocation(location);
+	            else {
+	                System.out.println("error when set location in " + fileName);
+	            }
+	        }
             else {
-                System.out.println("error when set location in " + fileName);
+            	String loca=list.get(i).getLocation();
+            	String locationCode=DisasterDataCode.locationDatatoCode(loca);
+            	int max=9999,min=1000;
+            	int ran = (int) (Math.random()*(max-min)+min); 
+            	String code=locationCode+"552"+String.valueOf(ran);
+            	list.get(i).setId(code);
             }
         }
         return list;
     }
-
-
-
-
-
 
 
     //从网页端上传写入（暂时用不到）
